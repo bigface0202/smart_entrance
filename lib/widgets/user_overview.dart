@@ -33,50 +33,67 @@ class _UserOverviewState extends State<UserOverview> {
   @override
   Widget build(BuildContext context) {
     final userData = Provider.of<Users>(context);
-    return _isLoading
+    return _isLoading && userData.users == null
         ? Center(child: CircularProgressIndicator())
-        : Expanded(
-            child: RefreshIndicator(
-              onRefresh: () => _refreshUsers(context),
-              child: ListView.builder(
-                itemCount: userData.users.length,
-                itemBuilder: (ctx, index) {
-                  return Card(
-                    elevation: 0,
-                    margin: EdgeInsets.symmetric(
-                      vertical: 2,
-                      horizontal: 5,
+        : userData.users.length < 1
+            ? RefreshIndicator(
+                onRefresh: () => _refreshUsers(context),
+                child: SingleChildScrollView(
+                  child: SizedBox(
+                    height: 450,
+                    width: 400,
+                    child: Center(
+                      child: Text(
+                          'Any user are not registered! Please register user!'),
                     ),
-                    child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: userData.users[index].entered == true
-                              ? Colors.deepOrangeAccent
-                              : Colors.black54,
-                          foregroundColor: Colors.white,
-                          radius: 30,
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: FittedBox(
-                              child: Text(
-                                userData.users[index].entered ? 'In' : 'Out',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )
+            : Expanded(
+                child: RefreshIndicator(
+                  onRefresh: () => _refreshUsers(context),
+                  child: ListView.builder(
+                    itemCount: userData.users.length,
+                    itemBuilder: (ctx, index) {
+                      return Card(
+                        elevation: 0,
+                        margin: EdgeInsets.symmetric(
+                          vertical: 2,
+                          horizontal: 5,
+                        ),
+                        child: ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor:
+                                  userData.users[index].entered == true
+                                      ? Colors.deepOrangeAccent
+                                      : Colors.black54,
+                              foregroundColor: Colors.white,
+                              radius: 30,
+                              child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: FittedBox(
+                                  child: Text(
+                                    userData.users[index].entered
+                                        ? 'In'
+                                        : 'Out',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                        title: Center(
-                          child: Text(
-                            'User ${index + 1}',
-                            style: TextStyle(
-                                fontSize: 22, fontWeight: FontWeight.bold),
-                          ),
-                        )),
-                  );
-                },
-              ),
-            ),
-          );
+                            title: Center(
+                              child: Text(
+                                'User ${index + 1}',
+                                style: TextStyle(
+                                    fontSize: 22, fontWeight: FontWeight.bold),
+                              ),
+                            )),
+                      );
+                    },
+                  ),
+                ),
+              );
   }
 }

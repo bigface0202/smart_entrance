@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -25,9 +26,12 @@ class Users with ChangeNotifier {
   }
 
   Future<void> fetchAndSetUsers() async {
-    var url = 'https://esp32-felica.firebaseio.com/Account/User.json';
+    var url = 'https://esp32-felica.firebaseio.com/User.json';
     try {
-      final response = await http.get(url);
+      final response =
+          await http.get(url).timeout(Duration(seconds: 5), onTimeout: () {
+        return null;
+      });
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
       if (extractedData == null) {
         return;
