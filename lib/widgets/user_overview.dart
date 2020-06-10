@@ -34,20 +34,26 @@ class _UserOverviewState extends State<UserOverview> {
   Widget build(BuildContext context) {
     final userData = Provider.of<Users>(context);
     return _isLoading && userData.users == null
-        ? Center(child: CircularProgressIndicator())
+        ? Center(
+            child: CircularProgressIndicator(),
+          )
         : userData.users.length < 1
-            ? RefreshIndicator(
-                onRefresh: () => _refreshUsers(context),
-                child: SingleChildScrollView(
-                  child: SizedBox(
-                    height: 450,
-                    width: 400,
-                    child: Center(
-                      child: Text(
-                          'Any user are not registered! Please register user!'),
-                    ),
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Text(
+                    'Any user are not registered!\nPlease register user!',
+                    style: TextStyle(fontSize: 22),
                   ),
-                ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.autorenew,
+                      size: 50,
+                    ),
+                    color: Colors.blueAccent,
+                    onPressed: () => _refreshUsers(context),
+                  )
+                ],
               )
             : Expanded(
                 child: RefreshIndicator(

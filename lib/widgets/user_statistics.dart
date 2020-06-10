@@ -28,6 +28,7 @@ class UserStatistics extends StatelessWidget {
         statisticsName,
         style: TextStyle(
           fontSize: 30,
+          fontWeight: FontWeight.bold,
         ),
       )
     ]);
