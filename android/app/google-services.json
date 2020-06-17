@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "660940756147",
+    "firebase_url": "https://esp32-felica.firebaseio.com",
+    "project_id": "esp32-felica",
+    "storage_bucket": "esp32-felica.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660940756147:android:25f61cbcc14656acb8ccc6",
+        "android_client_info": {
+          "package_name": "com.example.smart_entrance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660940756147-31n68c9ca7j7kc7eho48qf6qtr8ajv8j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrsKJ66yWHfkwTXiOYMmykLTb-rVyQKqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660940756147-31n68c9ca7j7kc7eho48qf6qtr8ajv8j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
