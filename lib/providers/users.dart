@@ -42,6 +42,7 @@ class Users with ChangeNotifier {
           id: userId,
           entered: userData['entered'],
           felicaId: userData['id'],
+          bodyTemp: userData['bodyTemp']
         ));
       });
       _users = loadedUsers;

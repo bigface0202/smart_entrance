@@ -68,34 +68,40 @@ class _UserOverviewState extends State<UserOverview> {
                           horizontal: 5,
                         ),
                         child: ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor:
-                                  userData.users[index].entered == true
-                                      ? Colors.deepOrangeAccent
-                                      : Colors.black54,
-                              foregroundColor: Colors.white,
-                              radius: 30,
-                              child: Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: FittedBox(
-                                  child: Text(
-                                    userData.users[index].entered
-                                        ? 'In'
-                                        : 'Out',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                          leading: CircleAvatar(
+                            backgroundColor:
+                                userData.users[index].entered == true
+                                    ? Colors.deepOrangeAccent
+                                    : Colors.black54,
+                            foregroundColor: Colors.white,
+                            radius: 30,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: FittedBox(
+                                child: Text(
+                                  userData.users[index].entered ? 'In' : 'Out',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
                             ),
-                            title: Center(
-                              child: Text(
-                                'User ${index + 1}',
-                                style: TextStyle(
-                                    fontSize: 22, fontWeight: FontWeight.bold),
-                              ),
-                            )),
+                          ),
+                          title: Center(
+                            child: Text(
+                              'User ${index + 1}',
+                              style: TextStyle(
+                                  fontSize: 22, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          trailing: Text(
+                            userData.users[index].bodyTemp != null ?
+                            '${double.parse(userData.users[index].bodyTemp.toStringAsFixed(1))} deg.(C)'
+                            : '  --.- deg.(C)',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                        ),
                       );
                     },
                   ),
